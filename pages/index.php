@@ -82,25 +82,25 @@ $resultado = mysqli_query($conexion, $query);
                 <input type="number" step="0.01" name="alto" placeholder="Alto (cm)">
                 <input type="number" step="0.01" name="ancho" placeholder="Ancho (cm)">`,
         
-        "2": ` <input type="text" name="material" placeholder="Material (Oro, Plata)" required>
-                <input type="text" name="tecnica" placeholder="Técnica">
-                <input type="number" step="0.01" name="peso" placeholder="Peso (gr)">`,
+        "2": ` <input type="text" name="material" placeholder="Material (Bronce, Mármol, Barro)" required>
+                <input type="number" step="0.01" name="peso" placeholder="Peso (kg)">
+                <input type="number" step="0.01" name="alto" placeholder="Alto (cm)">
+                <input type="number" step="0.01" name="ancho" placeholder="Ancho (cm)">`,
         
         "3": ` <input type="text" name="tecnica" placeholder="Técnica (Digital, Análoga)" required>
                 <input type="text" name="papel" placeholder="Tipo de Papel">
                 <input type="number" step="0.01" name="alto" placeholder="Alto (cm)">
                 <input type="number" step="0.01" name="ancho" placeholder="Ancho (cm)">`,
         
-        "4": ` <input type="text" name="material" placeholder="Material (Bronce, Mármol, Barro)" required>
+        "4": ` <input type="text" name="arcilla" placeholder="Tipo de material" required>
+                <input type="text" name="tecnica" placeholder="Técnica">
                 <input type="number" step="0.01" name="peso" placeholder="Peso (kg)">
                 <input type="number" step="0.01" name="alto" placeholder="Alto (cm)">
                 <input type="number" step="0.01" name="ancho" placeholder="Ancho (cm)">`,
         
-        "5": ` <input type="text" name="arcilla" placeholder="Tipo de material" required>
+        "5": ` <input type="text" name="material" placeholder="Material (Oro, Plata)" required>
                 <input type="text" name="tecnica" placeholder="Técnica">
-                <input type="number" step="0.01" name="peso" placeholder="Peso (kg)">
-                <input type="number" step="0.01" name="alto" placeholder="Alto (cm)">
-                <input type="number" step="0.01" name="ancho" placeholder="Ancho (cm)">`
+                <input type="number" step="0.01" name="peso" placeholder="Peso (gr)">`
     };
 
     contenedor.innerHTML = campos[genero] || "";

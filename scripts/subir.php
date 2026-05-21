@@ -49,12 +49,13 @@ if (isset($_POST['enviar'])) {
                             VALUES ('$id_generado', '$tecnica', '$soporte', '$alto', '$ancho')";
                 break;
 
-            case "2": // ORFERBRERIA (Tal cual está en tu imagen)
+            case "2": // ESCULTURA
                 $material = mysqli_real_escape_string($conexion, $_POST['material']);
-                $tecnica = mysqli_real_escape_string($conexion, $_POST['tecnica']);
                 $peso = !empty($_POST['peso']) ? $_POST['peso'] : 0;
-                $sql_esp = "INSERT INTO orferbreria (id_orferbreria, material, tecnica, peso) 
-                            VALUES ('$id_generado', '$material', '$tecnica', '$peso')";
+                $alto = !empty($_POST['alto']) ? $_POST['alto'] : 0;
+                $ancho = !empty($_POST['ancho']) ? $_POST['ancho'] : 0;
+                $sql_esp = "INSERT INTO escultura (id_escultura, material, peso, alto, ancho) 
+                            VALUES ('$id_generado', '$material', '$peso', '$alto', '$ancho')";
                 break;
 
             case "3": // FOTOGRAFIA
@@ -66,16 +67,7 @@ if (isset($_POST['enviar'])) {
                             VALUES ('$id_generado', '$tecnica', '$papel', '$alto', '$ancho')";
                 break;
 
-            case "4": // ESCULTURA
-                $material = mysqli_real_escape_string($conexion, $_POST['material']);
-                $peso = !empty($_POST['peso']) ? $_POST['peso'] : 0;
-                $alto = !empty($_POST['alto']) ? $_POST['alto'] : 0;
-                $ancho = !empty($_POST['ancho']) ? $_POST['ancho'] : 0;
-                $sql_esp = "INSERT INTO escultura (id_escultura, material, peso, alto, ancho) 
-                            VALUES ('$id_generado', '$material', '$peso', '$alto', '$ancho')";
-                break;
-
-            case "5": // CERAMICA
+            case "4": // CERAMICA
                 $arcilla = mysqli_real_escape_string($conexion, $_POST['arcilla']);
                 $tecnica = mysqli_real_escape_string($conexion, $_POST['tecnica']);
                 $peso = !empty($_POST['peso']) ? $_POST['peso'] : 0;
@@ -83,6 +75,14 @@ if (isset($_POST['enviar'])) {
                 $ancho = !empty($_POST['ancho']) ? $_POST['ancho'] : 0;
                 $sql_esp = "INSERT INTO ceramica (id_ceramica, arcilla, tecnica, peso, alto, ancho) 
                             VALUES ('$id_generado', '$arcilla', '$tecnica', '$peso', '$alto', '$ancho')";
+                break;
+
+            case "5": // ORFEBRERIA
+                $material = mysqli_real_escape_string($conexion, $_POST['material']);
+                $tecnica = mysqli_real_escape_string($conexion, $_POST['tecnica']);
+                $peso = !empty($_POST['peso']) ? $_POST['peso'] : 0;
+                $sql_esp = "INSERT INTO orferbreria (id_orfebreria, material, tecnica, peso) 
+                            VALUES ('$id_generado', '$material', '$tecnica', '$peso')";
                 break;
         }
 
