@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
+
+/* ── Variables (idénticas al panel) ── */
+:root {
+  --bg:         #0e0e0e;
+  --surface:    #161616;
+  --surface-2:  #1f1f1f;
+  --border:     #2e2e2e;
+  --gold:       #c9a84c;
+  --text:       #e8e2d9;
+  --text-muted: #7a7570;
+  --error:      #c0392b;
+  --radius:     4px;
+  --transition: 0.25s ease;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Título decorativo sobre el formulario ── */
+body::before {
+  content: "GALERÍA";
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: 0.5em;
+  color: var(--gold);
+  margin-bottom: 40px;
+}
+
+/* ── Contenedor del formulario ── */
+.form-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 44px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  position: relative;
+}
+
+/* Línea dorada decorativa superior */
+.form-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 44px;
+  width: 48px; height: 2px;
+  background: var(--gold);
+}
+
+/* Título del formulario — añade un <h2> en tu HTML si no lo tienes */
+.form-container h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text);
+  margin-bottom: 32px;
+}
+
+/* ── Labels ── */
+label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  margin-top: 22px;
+}
+
+label:first-of-type { margin-top: 0; }
+
+/* ── Inputs ── */
+input {
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 11px 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.08);
+}
+
+input::placeholder { color: var(--text-muted); opacity: 0.6; }
+
+/* ── Botón ── */
+button {
+  display: block;
+  width: 100%;
+  margin-top: 32px;
+  padding: 13px;
+  background: transparent;
+  border: 1px solid var(--gold);
+  border-radius: var(--radius);
+  color: var(--gold);
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+button:hover {
+  background: var(--gold);
+  color: var(--bg);
+}
+
+/* ── Error ── */
+.error {
+  display: block;
+  margin-top: 18px;
+  padding: 12px 14px;
+  background: rgba(192, 57, 43, 0.08);
+  border: 1px solid rgba(192, 57, 43, 0.3);
+  border-radius: var(--radius);
+  color: #e07060;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
+
+/* ── Scrollbar sutil (consistencia global) ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
