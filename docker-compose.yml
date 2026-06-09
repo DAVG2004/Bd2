@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  cassandra-db:
+    image: cassandra:latest
+    container_name: cassandra-museo
+    ports:
+      - "9043:9042"
+    volumes:
+      - ./scripts/cassandra:/scripts
+    environment:
+      - CASSANDRA_CLUSTER_NAME=MuseoCluster
+    restart: always
