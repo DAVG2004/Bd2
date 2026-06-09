@@ -27,12 +27,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['nombre'] = $fila['nombre'];
 
                 // Si el usuario es un empleado, asignamos su rol específico (admin o encargado)
-                if ($tabla == 'empleado') {
-                    // Usamos la columna 'rol' que agregamos a la tabla empleado
-                    $_SESSION['rol'] = strtolower($fila['rol']); 
-                } else {
-                    $_SESSION['rol'] = $tabla;
-                }
+                <?php
+    if ($tabla == 'empleado') {
+        // Si la tabla empleado tiene columna 'rol' usamos esa, sino usamos 'puesto'
+        if (isset($fila['rol'])) {
+            $_SESSION['rol'] = strtolower($fila['rol']);
+        } elseif (isset($fila['puesto'])) {
+            $_SESSION['rol'] = strtolower($fila['puesto']);
+        } else {
+            // fallback al nombre de la tabla
+            $_SESSION['rol'] = $tabla;
+        }
+    } else {
+        $_SESSION['rol'] = $tabla;
+    }
                 
                 header("Location: index.php"); 
                 exit;

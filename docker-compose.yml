@@ -10,3 +10,17 @@ services:
     environment:
       - CASSANDRA_CLUSTER_NAME=MuseoCluster
     restart: always
+
+  mongo-db:
+    image: mongo:7.0
+    container_name: mongo-museo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=galeria_db_mongo
+    restart: always
+
+volumes:
+  mongo_data:

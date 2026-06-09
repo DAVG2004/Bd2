@@ -2,8 +2,8 @@
 session_start();
 include '../scripts/db.php'; // Conexión a la base de datos
 
-// Seguridad: Solo entrar si el usuario tiene el rol de administrador
-if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'administrador') {
+// Seguridad: Permitir acceso a usuarios cuyo rol sea "administrador" o "admin"
+if (!isset($_SESSION['rol']) || !in_array(strtolower($_SESSION['rol']), ['administrador', 'admin'])) {
     header("Location: login.php");
     exit();
 }
@@ -44,6 +44,9 @@ $seccion = isset($_GET['view']) ? $_GET['view'] : 'dashboard';
                 <a href="admin_panel.php?view=facturacion" class="<?= $seccion == 'facturacion' ? 'active' : '' ?>">💰 Reporte Facturación</a>
                 <a href="admin_panel.php?view=obras_vendidas" class="<?= $seccion == 'obras_vendidas' ? 'active' : '' ?>">🖼️ Obras Vendidas</a>
                 <hr style="width: 100%; border: 0; border-top: 1px solid #444; margin: 10px 0;">
+                <a href="admin_panel.php?view=mongo_migrar" class="<?= $seccion == 'mongo_migrar' ? 'active' : '' ?>">🚀 Migrar a MongoDB</a>
+                <a href="admin_panel.php?view=mongo_ver"    class="<?= $seccion == 'mongo_ver'    ? 'active' : '' ?>">🗄️ Ver Datos Mongo</a>
+                <hr style="width: 100%; border: 0; border-top: 1px solid #444; margin: 10px 0;">
                 <a href="index.php">🏠 Volver a Galería</a>
                 <a href="../scripts/logout.php" style="color: #ff4d4d;">🚪 Cerrar Sesión</a>
             </nav>
@@ -64,6 +67,14 @@ $seccion = isset($_GET['view']) ? $_GET['view'] : 'dashboard';
                     case 'obras_vendidas':
                         // Incluye el catálogo histórico de ventas
                         include 'admin_rep_obras.php';
+                        break;
+                    case 'mongo_migrar':
+                        // Formulario para migrar artistas y obras de MySQL → MongoDB
+                        include 'admin_mongo_migrate.php';
+                        break;
+                    case 'mongo_ver':
+                        // Visualización de colecciones directamente desde MongoDB
+                        include 'admin_mongo_view.php';
                         break;
                     default:
                         echo "<h1>Bienvenido, Administrador</h1>";
