@@ -6,17 +6,18 @@ if (!isset($_SESSION['id']) || $_SESSION['rol'] !== 'comprador') {
     die("Acceso denegado.");
 }
 
-if (isset($_GET['id_obra']) && isset($_GET['id_empleado'])) {
+if (isset($_GET['id_obra'])) {
     $id_obra = (int)$_GET['id_obra'];
-    $id_empleado = (int)$_GET['id_empleado'];
+    // If an advisor ID is provided use it, otherwise default to the logged‑in user
+    $id_empleado = isset($_GET['id_empleado']) ? (int)$_GET['id_empleado'] : $_SESSION['id'];
     $id_comprador = $_SESSION['id'];
     $fecha_actual = date("Y-m-d H:i:s");
 
     // Verificar que el asesor sea válido
-    $check_emp = mysqli_query($conexion, "SELECT rol FROM empleado WHERE id_empleado = $id_empleado");
+    $check_emp = mysqli_query($conexion, "SELECT puesto FROM empleado WHERE id_empleado = $id_empleado");
     $datos_emp = mysqli_fetch_assoc($check_emp);
 
-    if (!$datos_emp || strtolower($datos_emp['rol']) === 'administrador') {
+    if (!$datos_emp || strtolower($datos_emp['puesto']) === 'administrador') {
         echo "<script>alert('Asesor no válido.'); window.location.href='index.php';</script>";
         exit();
     }

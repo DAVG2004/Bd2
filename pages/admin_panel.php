@@ -47,6 +47,9 @@ $seccion = isset($_GET['view']) ? $_GET['view'] : 'dashboard';
                 <a href="admin_panel.php?view=mongo_migrar" class="<?= $seccion == 'mongo_migrar' ? 'active' : '' ?>">🚀 Migrar a MongoDB</a>
                 <a href="admin_panel.php?view=mongo_ver"    class="<?= $seccion == 'mongo_ver'    ? 'active' : '' ?>">🗄️ Ver Datos Mongo</a>
                 <hr style="width: 100%; border: 0; border-top: 1px solid #444; margin: 10px 0;">
+                <a href="admin_panel.php?view=cassandra_setup" class="<?= $seccion == 'cassandra_setup' ? 'active' : '' ?>">⚙️ Setup Cassandra</a>
+                <a href="admin_panel.php?view=cassandra_ver"   class="<?= $seccion == 'cassandra_ver'   ? 'active' : '' ?>">🗄️ Ver Logs Cassandra</a>
+                <hr style="width: 100%; border: 0; border-top: 1px solid #444; margin: 10px 0;">
                 <a href="index.php">🏠 Volver a Galería</a>
                 <a href="../scripts/logout.php" style="color: #ff4d4d;">🚪 Cerrar Sesión</a>
             </nav>
@@ -75,6 +78,14 @@ $seccion = isset($_GET['view']) ? $_GET['view'] : 'dashboard';
                     case 'mongo_ver':
                         // Visualización de colecciones directamente desde MongoDB
                         include 'admin_mongo_view.php';
+                        break;
+                    case 'cassandra_setup':
+                        // Inicialización de tablas Cassandra y carga de prueba
+                        include 'admin_cassandra_setup.php';
+                        break;
+                    case 'cassandra_ver':
+                        // Visor de bitácoras de Cassandra
+                        include 'admin_cassandra_view.php';
                         break;
                     default:
                         echo "<h1>Bienvenido, Administrador</h1>";

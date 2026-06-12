@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['nombre'] = $fila['nombre'];
 
                 // Si el usuario es un empleado, asignamos su rol específico (admin o encargado)
-                <?php
+       
     if ($tabla == 'empleado') {
         // Si la tabla empleado tiene columna 'rol' usamos esa, sino usamos 'puesto'
         if (isset($fila['rol'])) {
